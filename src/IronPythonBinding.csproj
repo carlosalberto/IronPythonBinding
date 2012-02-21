@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ADA5AFE3-BA4B-410E-B247-DE4CB4800E8C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MonoDevelop.IronPython</RootNamespace>
+    <AssemblyName>IronPythonBinding</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="MonoDevelop.Core, Version=2.6.0.0, Culture=neutral">
+      <Private>False</Private>
+      <Package>monodevelop</Package>
+    </Reference>
+    <Reference Include="MonoDevelop.Ide, Version=2.6.0.0, Culture=neutral">
+      <Private>False</Private>
+      <Package>monodevelop</Package>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.TextEditor, Version=1.0.0.0, Culture=neutral">
+      <Private>False</Private>
+      <Package>monodevelop</Package>
+    </Reference>
+    <Reference Include="IronPython">
+      <HintPath>IronLibs\IronPython.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamic">
+      <HintPath>IronLibs\Microsoft.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting">
+      <HintPath>IronLibs\Microsoft.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="Mono.Posix" />
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="Mono.Data.Sqlite" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="MonoDevelop.IronPython.Formatting\PythonEditorIndentation.cs" />
+    <Compile Include="MonoDevelop.IronPython\PythonLanguageBinding.cs" />
+    <Compile Include="MonoDevelop.IronPython.Parser\CustomPythonWalker.cs" />
+    <Compile Include="MonoDevelop.IronPython.Resolver\PythonResolver.cs" />
+    <Compile Include="MonoDevelop.IronPython.Resolver\PythonExpressionFinder.cs" />
+    <Compile Include="MonoDevelop.IronPython.Parser\PythonParser.cs" />
+    <Compile Include="MonoDevelop.IronPython.Parser.Dom\PythonArgument.cs" />
+    <Compile Include="MonoDevelop.IronPython.Parser.Dom\PythonAttribute.cs" />
+    <Compile Include="MonoDevelop.IronPython.Parser.Dom\PythonClass.cs" />
+    <Compile Include="MonoDevelop.IronPython.Parser.Dom\PythonComment.cs" />
+    <Compile Include="MonoDevelop.IronPython.Parser.Dom\PythonCompilationUnit.cs" />
+    <Compile Include="MonoDevelop.IronPython.Parser.Dom\PythonContainerNode.cs" />
+    <Compile Include="MonoDevelop.IronPython.Parser.Dom\PythonFromImport.cs" />
+    <Compile Include="MonoDevelop.IronPython.Parser.Dom\PythonFunction.cs" />
+    <Compile Include="MonoDevelop.IronPython.Parser.Dom\PythonImport.cs" />
+    <Compile Include="MonoDevelop.IronPython.Parser.Dom\PythonLocal.cs" />
+    <Compile Include="MonoDevelop.IronPython.Parser.Dom\PythonModule.cs" />
+    <Compile Include="MonoDevelop.IronPython.Parser.Dom\PythonNode.cs" />
+    <Compile Include="MonoDevelop.IronPython\PythonHelper.cs" />
+    <Compile Include="MonoDevelop.IronPython\PythonConfiguration.cs" />
+    <Compile Include="MonoDevelop.IronPython\PythonProject.cs" />
+    <Compile Include="MonoDevelop.IronPython\PythonProjectBinding.cs" />
+    <Compile Include="gtk-gui\generated.cs" />
+    <Compile Include="MonoDevelop.IronPython.Gui\MainPanel.cs" />
+    <Compile Include="gtk-gui\MonoDevelop.IronPython.Gui.MainPanel.cs" />
+    <Compile Include="MonoDevelop.IronPython\IronManager.cs" />
+    <Compile Include="MonoDevelop.IronPython.Completion\PythonEditorCompletion.cs" />
+    <Compile Include="MonoDevelop.IronPython.Completion\PythonSite.cs" />
+    <Compile Include="MonoDevelop.IronPython.Parser\ParserDatabase.cs" />
+    <Compile Include="MonoDevelop.IronPython.Parser\ParserItem.cs" />
+    <Compile Include="MonoDevelop.IronPython.Gui\OptionsWidget.cs" />
+    <Compile Include="gtk-gui\MonoDevelop.IronPython.Gui.OptionsWidget.cs" />
+    <Compile Include="MonoDevelop.IronPython\PythonExecutionCommand.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <EmbeddedResource Include="IronPythonBinding.addin.xml">
+      <LogicalName>IronPythonBinding.addin.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="templates\EmptyIronPythonFile.xft.xml">
+      <LogicalName>EmptyIronPythonFile.xft.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="templates\EmptyIronPythonProject.xpt.xml">
+      <LogicalName>EmptyIronPythonProject.xpt.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gtk-gui\gui.stetic">
+      <LogicalName>gui.stetic</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="templates\ConsoleIronPythonProject.xpt.xml">
+      <LogicalName>ConsoleIronPythonProject.xpt.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Schema.sql">
+      <LogicalName>Schema.sql</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="templates\GtkIronPythonProject.xpt.xml">
+      <LogicalName>GtkIronPythonProject.xpt.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\py-icon-32.png">
+      <LogicalName>py-icon-32.png</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="templates\" />
+    <Folder Include="MonoDevelop.IronPython\" />
+    <Folder Include="MonoDevelop.IronPython.Formatting\" />
+    <Folder Include="MonoDevelop.IronPython.Parser\" />
+    <Folder Include="MonoDevelop.IronPython.Resolver\" />
+    <Folder Include="MonoDevelop.IronPython.Parser.Dom\" />
+    <Folder Include="MonoDevelop.IronPython.Gui\" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+</Project>
