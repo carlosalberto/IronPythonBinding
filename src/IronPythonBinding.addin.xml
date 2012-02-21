@@ -8,6 +8,13 @@
 		category	= "Language bindings"
 		version		= "2.8.4">
 	
+	<Runtime>
+		<Import assembly = "IronPythonBinding.dll" />
+		<Import assembly = "IronPython.dll" />
+		<Import assembly = "Microsoft.Dynamic.dll" />
+		<Import assembly = "Microsoft.Scripting.dll" />
+	</Runtime>
+	
 	<Dependencies>
 		<Addin id = "Core" version = "2.8.2" />
 		<Addin id = "Ide" version = "2.8.2" />	

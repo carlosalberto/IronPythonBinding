@@ -1,0 +1,12 @@
+<AddinProject appVersion="2.8">
+	<Project platforms="Mac Linux Win32">
+		<AddinFile>bin/Debug/IronPythonBinding.dll</AddinFile>
+		<BuildFile>IronPythonBinding.sln</BuildFile>
+		<BuildConfiguration>Debug</BuildConfiguration>
+	</Project>
+	<Project platforms="Win32">
+		<AddinFile>bin/Debug/IronPythonBinding.dll</AddinFile>
+		<BuildFile>IronPythonBinding.sln</BuildFile>
+		<BuildConfiguration>Debug</BuildConfiguration>
+	</Project>
+</AddinProject>
