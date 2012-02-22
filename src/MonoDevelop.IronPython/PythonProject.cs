@@ -30,6 +30,7 @@ using System.Xml;
 using MonoDevelop.Core;
 using MonoDevelop.Core.Execution;
 using MonoDevelop.Core.ProgressMonitoring;
+using MonoDevelop.Ide;
 using MonoDevelop.Projects;
 
 namespace MonoDevelop.IronPython
@@ -80,16 +81,17 @@ namespace MonoDevelop.IronPython
 		
 		protected override bool OnGetCanExecute (ExecutionContext context, ConfigurationSelector configuration)
 		{
-			if (!IronManager.IsInterpreterPathValid ())
-				return false;
-			
-			var config = (PythonConfiguration) GetConfiguration (configuration);
-			var path = config.OutputDirectory.Combine (config.MainModule).ChangeExtension ("py");
-			return !String.IsNullOrEmpty (config.MainModule) && IsFileInProject (path);
+			// We have decided to have the 'Run' menu always available,
+			// and show any error (e.g. interpreter not set, module not set)
+			// when it is actually invoked, providing a more precise message.
+			return true;
 		}
 		
 		protected override void DoExecute (IProgressMonitor monitor, ExecutionContext context, ConfigurationSelector configuration)
 		{
+			if (!CheckCanExecute (configuration))
+				return;
+	
 			var config = (PythonConfiguration) GetConfiguration (configuration);
 			IConsole console = config.ExternalConsole ?
 				context.ExternalConsoleFactory.CreateConsole (!config.PauseConsoleOutput) :
@@ -118,7 +120,31 @@ namespace MonoDevelop.IronPython
 				aggregatedMonitor.Dispose ();
 			}
 		}
-		
+			
+		bool CheckCanExecute (ConfigurationSelector configuration)
+		{
+			if (!IronManager.IsInterpreterPathValid ()) {
+				MessageService.ShowError ("Interpreter not set", "A valid interpreter has not been set.");
+				return false;
+			}
+			
+			var config = (PythonConfiguration) GetConfiguration (configuration);
+			if (String.IsNullOrEmpty (config.MainModule)) {
+				MessageService.ShowError ("Main module not set", "Main module has not been set.");
+				return false;
+			}
+			
+			// Try to detect the actual module file.
+			var module = config.MainModule.Replace ('.', System.IO.Path.DirectorySeparatorChar);
+			var path = config.OutputDirectory.Combine (module).ChangeExtension ("py");
+			if (!IsFileInProject (path)) {
+				MonoDevelop.Ide.MessageService.ShowError ("Main module is missing", "Main module file is missing.");
+				return false;
+			}
+			
+			return true;
+		}
+			
 		// TODO - Research on the target runtime selection (if possible/doable/recommended).
 		protected virtual PythonExecutionCommand CreateExecutionCommand (ConfigurationSelector configSel, PythonConfiguration configuration)
 		{
